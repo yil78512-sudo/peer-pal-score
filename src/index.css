@@ -11,6 +11,17 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
+    /* Brand */
+    --brand-from: 250 90% 70%;
+    --brand-to: 220 95% 72%;
+    --bg-from: 280 60% 96%;
+    --bg-via: 220 80% 96%;
+    --bg-to: 200 80% 96%;
+
+    --gradient-brand: linear-gradient(135deg, hsl(var(--brand-from)), hsl(var(--brand-to)));
+    --gradient-page: linear-gradient(135deg, hsl(var(--bg-from)) 0%, hsl(var(--bg-via)) 50%, hsl(var(--bg-to)) 100%);
+    --shadow-card: 0 10px 40px -10px hsl(250 60% 60% / 0.15);
+
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
 
