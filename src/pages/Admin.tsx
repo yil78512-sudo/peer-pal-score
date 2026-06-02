@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   STUDENTS,
   STAGES,
@@ -10,7 +9,20 @@ import {
   usePortfolios,
   getPortfolios,
   getRatings,
+  clearAllData,
 } from "@/lib/peerData";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "@/hooks/use-toast";
 
 const fmt = (n: number | null) => (n === null ? "—" : n.toFixed(2));
 
