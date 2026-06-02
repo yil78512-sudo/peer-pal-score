@@ -168,6 +168,15 @@ const RatingSection = () => {
 
       {!rater || !stage ? (
         <p className="text-center text-muted-foreground py-8">请先选择评分人和阶段</p>
+      ) : rated.length === targets.length ? (
+        // 该评分人本阶段已全部提交完成：隐藏所有评分明细，仅显示已完成状态
+        <div className="py-10 text-center space-y-2">
+          <div className="text-3xl">✅</div>
+          <p className="text-lg font-semibold text-primary">本阶段评分已完成并提交</p>
+          <p className="text-sm text-muted-foreground">
+            为保护评分隐私，学生端不再显示该阶段的评分明细。
+          </p>
+        </div>
       ) : (
         <>
           <p className="mb-4 text-sm text-muted-foreground">
@@ -175,9 +184,6 @@ const RatingSection = () => {
           </p>
           <div className="mb-4 text-sm text-muted-foreground">
             进度：<span className="font-semibold text-foreground">{rated.length}</span> / {targets.length}
-            {rated.length === targets.length && (
-              <span className="ml-2 text-primary font-medium">✓ 本阶段已全部完成</span>
-            )}
           </div>
           <div className="space-y-3">
             {targets.map((t) => {
