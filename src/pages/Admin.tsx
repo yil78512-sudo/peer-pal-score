@@ -277,6 +277,43 @@ const exportAll = () => {
   URL.revokeObjectURL(url);
 };
 
+const DataManagement = () => {
+  const handleReset = () => {
+    clearAllData();
+    toast({ title: "已开启新一轮课程", description: "旧评分记录与提交状态已清空。" });
+  };
+
+  return (
+    <Card icon="🗑️" title="数据管理">
+      <p className="text-sm text-muted-foreground mb-5">
+        仅用于正式测试前或开启新一轮课程前清空旧数据，学生端不可见。
+      </p>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <button
+            className="px-5 py-2.5 rounded-xl text-white text-sm font-medium shadow-md hover:opacity-90"
+            style={{ backgroundImage: "var(--gradient-brand)" }}
+          >
+            开启新一轮课程
+          </button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>确认开启新一轮课程？</AlertDialogTitle>
+            <AlertDialogDescription>
+              此操作将清空所有旧的评分记录、提交状态与作品集数据，且无法恢复。确认要继续吗？
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>取消</AlertDialogCancel>
+            <AlertDialogAction onClick={handleReset}>确认清空</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </Card>
+  );
+};
+
 const Admin = () => {
   return (
     <div
@@ -285,9 +322,6 @@ const Admin = () => {
     >
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="flex items-center">
-          <Link to="/student" className="text-sm text-muted-foreground hover:text-foreground">
-            ← 学生端
-          </Link>
           <button
             onClick={exportAll}
             className="ml-auto px-4 py-2 rounded-xl text-white text-sm font-medium shadow-md hover:opacity-90 flex items-center gap-2"
@@ -305,6 +339,7 @@ const Admin = () => {
         <Ranking />
         <StageOverview />
         <Completion />
+        <DataManagement />
       </div>
     </div>
   );
