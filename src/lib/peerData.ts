@@ -49,6 +49,13 @@ export function getRatings(): Rating[] {
   return read<Rating[]>(RATINGS_KEY, []);
 }
 
+/** 开启新一轮课程：清空所有评分记录、提交状态与作品集数据 */
+export function clearAllData() {
+  localStorage.removeItem(RATINGS_KEY);
+  localStorage.removeItem(PORTFOLIOS_KEY);
+  window.dispatchEvent(new Event(EVENT));
+}
+
 export function getPortfolios(): Portfolio[] {
   return read<Portfolio[]>(PORTFOLIOS_KEY, []);
 }
