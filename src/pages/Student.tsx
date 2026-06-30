@@ -49,6 +49,16 @@ const avatarMeta: Record<string, { theme: string; image: string }> = {
 };
 
 const avatarSrc = (filename: string) => `${import.meta.env.BASE_URL}avatars/${filename}`;
+const FALLBACK_PORTFOLIO_URLS = {
+  "刘一": "https://yil78512-sudo.github.io/liuyi-portfolio-2026/",
+  "王景璇": "https://wangxuan07.github.io/WANGXUAN/",
+  "龙珊": "https://1872344762-crypto.github.io/taiping-drum-game/taiping-drum-integrated-website/index.html",
+  "于艺萱": "https://effervescent-bublanina-f27a04.netlify.app/",
+  "徐浩": "https://xh529.github.io",
+  "肖文光": "https://glowing-churros-193883.netlify.app/",
+  "鲍禹尧": "https://byy13552797233-lang.github.io/work2/",
+  "张延兵": "https://6a4350d6f995d8d248d16d3e--ornate-piroshki-ba53cf.netlify.app/",
+} as const;
 
 const PageShell = ({ children }: { children: React.ReactNode }) => (
   <div
@@ -103,7 +113,10 @@ const Card = ({
 
 const PortfolioSection = () => {
   const portfolios = usePortfolios();
-  const getUrl = (s: string) => portfolios.find((p) => p.student === s)?.url ?? "";
+  const getUrl = (s: string) =>
+  portfolios.find((p) => p.student === s)?.url ||
+  FALLBACK_PORTFOLIO_URLS[s as keyof typeof FALLBACK_PORTFOLIO_URLS] ||
+  "";
 
   return (
     <Card
